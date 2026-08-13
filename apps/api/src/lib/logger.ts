@@ -1,0 +1,8 @@
+import pino from 'pino';
+import { env } from './env';
+
+export const logger = pino({
+  level: env.NODE_ENV === 'production' ? 'info' : 'debug',
+  // Keep logs lightweight for a 2GB RAM host — no pretty-printing in prod.
+  transport: env.NODE_ENV === 'production' ? undefined : { target: 'pino-pretty', options: { colorize: true } },
+});

@@ -1,0 +1,36 @@
+{
+  "name": "calendar-scheduling-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Production-ready Calendar & Scheduling application (Web, Desktop, Android, iOS) backed by Supabase, deployable to standard managed Node.js hosting (e.g. Hostnin Pro).",
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "apps/desktop",
+    "apps/mobile",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "dev:mobile": "npm run start --workspace=apps/mobile",
+    "dev:desktop": "npm run tauri:dev --workspace=apps/desktop",
+    "build:shared": "npm run build --workspace=packages/shared",
+    "build:api": "npm run build --workspace=apps/api",
+    "build:web": "npm run build --workspace=apps/web",
+    "build": "npm run build:shared && npm run build:api && npm run build:web",
+    "start": "npm run start --workspace=apps/api",
+    "lint": "npm run lint --workspace=apps/api && npm run lint --workspace=apps/web",
+    "typecheck": "npm run typecheck --workspace=apps/api && npm run typecheck --workspace=apps/web && npm run typecheck --workspace=packages/shared",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:reset": "supabase db reset",
+    "supabase:migrate:new": "supabase migration new"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18 <=22"
+  }
+}

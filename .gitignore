@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+out/
+.next/
+.expo/
+.expo-shared/
+apps/desktop/src-tauri/target/
+
+# Environment variables (NEVER COMMIT)
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+!.env.example
+
+# Supabase local
+supabase/.branches
+supabase/.temp
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Testing
+coverage/
+
+# Misc
+*.tsbuildinfo
+.eslintcache
