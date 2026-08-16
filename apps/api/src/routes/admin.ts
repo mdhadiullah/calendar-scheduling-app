@@ -75,7 +75,7 @@ adminRouter.get(
     const from = (page - 1) * pageSize;
     const to = from + pageSize - 1;
 
-    let query = supabaseAdmin.from('profiles').select('*, user_access(*)', { count: 'exact' }).order('created_at', { ascending: false });
+    let query = supabaseAdmin.from('profiles').select('*, user_access!user_access_user_id_fkey(*)', { count: 'exact' }).order('created_at', { ascending: false });
 
     if (req.query.role) query = query.eq('role', String(req.query.role));
     if (req.query.status) query = query.eq('status', String(req.query.status));
@@ -94,7 +94,7 @@ adminRouter.get(
 adminRouter.get(
   '/admin/users/:id',
   asyncHandler(async (req, res) => {
-    const { data, error } = await supabaseAdmin.from('profiles').select('*, user_access(*)').eq('id', req.params.id).single();
+    const { data, error } = await supabaseAdmin.from('profiles').select('*, user_access!user_access_user_id_fkey(*)').eq('id', req.params.id).single();
     if (error || !data) throw new ApiHttpError(404, 'NOT_FOUND', 'User not found');
     res.json({ user: data });
   })
